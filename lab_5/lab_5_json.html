@@ -279,11 +279,14 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
 
-    sessionStorage.setItem('newCountries', JSON.stringify(countries));
-    const edits = sessionStorage.getItem('newCountries');
-   
-
-    function randomize() {
+    console.log("List of countries in the world", countries);
+    
+    let store = sessionStorage.setItem('newCountries', JSON.stringify(countries));
+    let retrieve = sessionStorage.getItem('newCountries');
+    let nextRetrieve = JSON.parse(retrieve);
+    console.log(nextRetrieve);
+    
+    function randomize(min, max) {
         return Math.floor(Math.random() * (countries.length));
     }
 
@@ -297,8 +300,6 @@
         oldList[0].innerHTML = "<ol>" + newList;
     }
 
-    console.log("List of countries in the world", countries);
-    
   </script>
 </body>
 
