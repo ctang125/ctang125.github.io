@@ -16,13 +16,41 @@
     </div>
   </div>
   <script>
+    function randomize(min, max) {
+        return Math.floor(Math.random() * max) + min;
+    }
     function loadData() {
       fetch('ajax_sample.json')
         .then(res => res.json())
-        .then(res => res.map(c => c.code))
-        .then(codes => document.querySelector(".content").innerText = codes);
+        .then(res => res.map(c => c.name))
+        .then(res => {
+          countries = "<ol>";
+          for (i = 0; i < 15; i++) {
+            let array = randomize(0, res.length - 1);
+            countries += '<li>' + res[array] + '</li>';
+            res.splice(randomize(0, res.length - 1), 1);
+          }
+          countries += '</ol>';
+          document.querySelector(".content").innerHTML = countries;
+        });
+
     }
   </script>
 </body>
 
 </html>
+
+<!--function randomize() {
+    return Math.floor(Math.random() * (countries.length));
+}
+
+function replace() {
+    let newList = "";
+    let oldList = document.getElementsByClassName("instructions");
+    let i;
+    for (i = 0; i < 50; i++) {
+        newList += "<li>" + countries[randomize(0, countries.length)].name + '<br>';
+    }
+    oldList[0].innerHTML = "<ol>" + newList;
+} -->
+
