@@ -24,8 +24,18 @@
           console.log(res); // logging step to check what we got
           return res;
         })
-        .then(res => res.data.map(c => c.route_id))
-        .then(codes => document.querySelector(".content").innerText = codes);
+        .then(res => res.data.map(c => c.course_id + ": " + c.name))
+        .then(courses => {
+            let origCourses = '<ol>';
+            const infoCourses = courses.filter(course_id => course_id.includes('INST'));  
+            console.log((infoCourses))
+            for (i = 0; i < infoSci.length; i++) {
+                origCourses += '<li>' + infoCourses[i] + '</li>';
+            }
+            origCourses += '</ol>';
+            documemt.querySelector(".content").innerHTML = origCourses
+        })
+        
     }
   </script>
 </body>
